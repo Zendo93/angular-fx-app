@@ -1,8 +1,3 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
 .container {
   position: sticky;
   top: 0;
