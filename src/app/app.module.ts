@@ -11,13 +11,15 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { ResultComponent } from './result/result.component';
 import {MatCardModule} from "@angular/material/card";
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SearchBarComponent,
-    ResultComponent
+    ResultComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
