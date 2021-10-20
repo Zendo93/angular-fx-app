@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import { ResultComponent } from './result/result.component';
 import {MatCardModule} from "@angular/material/card";
 import { ItemComponent } from './item/item.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ItemComponent } from './item/item.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
