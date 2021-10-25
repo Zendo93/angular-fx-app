@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card *ngIf="item.currency && item.exchangeRate?.sell && item.flags">
   <mat-card-content>
-    <img src="assets/flags/us.png" alt="us">
-    <h4 class="currency">USD</h4>
-    <h4 class="exchange-value" >1.1399 EUR</h4>
+    <img src="{{flag}}" alt="flag">
+    <h4 class="currency">{{item.currency}}</h4>
+    <h4 class="exchange-value" >{{item.exchangeRate.sell}} EUR</h4>
   </mat-card-content>
 </mat-card>

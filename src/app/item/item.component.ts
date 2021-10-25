@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IForeignExchange} from "../types";
+import {getFlag} from "../utilities/flag";
 
 @Component({
   selector: 'app-item',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
+  @Input()  item: IForeignExchange = {} as IForeignExchange;
+  flag: string = "";
+
   constructor() { }
 
   ngOnInit(): void {
+    this.flag = getFlag(this.item.currency.toLowerCase());
   }
 
 }
