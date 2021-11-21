@@ -16,6 +16,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {StoreModule} from "@ngrx/store";
 import {searchReducer} from "./state/search.reducer";
+import {resultReducer} from "./state/result.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {ResultEffects} from "./state/result.effects";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import {searchReducer} from "./state/search.reducer";
     ItemComponent
   ],
     imports: [
-        StoreModule.forRoot({ search: searchReducer }),
+        StoreModule.forRoot({ search: searchReducer, result: resultReducer }),
+        EffectsModule.forRoot([ResultEffects]),
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,

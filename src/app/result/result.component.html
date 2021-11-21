@@ -1,5 +1,5 @@
 <app-item
-*ngFor="let item of result.fx"
+*ngFor="let item of (result$ | async)?.fx"
 [item] = "item"
 >
 </app-item>

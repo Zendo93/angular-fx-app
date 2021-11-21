@@ -1,31 +1,21 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ResultService} from "../services/result.service";
+import {Component, OnInit} from '@angular/core';
 import {IResult} from "../types";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+import {getResult} from "../state/result.actions";
+import {selectResult} from "../state/result.selector";
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.css']
 })
-export class ResultComponent implements OnInit, OnChanges {
-  @Input() searchTerm: string = "";
-  result: IResult = {} as IResult;
-  temp: IResult = {} as IResult;
+export class ResultComponent implements OnInit {
+  result$: Observable<IResult> = this.store.select(selectResult);
 
-  constructor(private resultService: ResultService) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.resultService.getResult("assets/fx.json")
-      .subscribe((result: IResult) => {
-        this.result = Object.create(result);
-        this.temp = Object.create(result);
-      });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.result = Object.create(this.temp);
-    if (changes["searchTerm"].currentValue) {
-      this.result.fx = this.result.fx.filter(fx => fx.currency.toLowerCase().startsWith(changes["searchTerm"].currentValue.toLowerCase()));
-    }
+    this.store.dispatch(getResult());
   }
 }
