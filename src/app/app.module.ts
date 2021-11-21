@@ -14,6 +14,8 @@ import {MatCardModule} from "@angular/material/card";
 import { ItemComponent } from './item/item.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import {searchReducer} from "./state/search.reducer";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     ItemComponent
   ],
     imports: [
+        StoreModule.forRoot({ search: searchReducer }),
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
