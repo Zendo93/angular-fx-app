@@ -4,6 +4,7 @@ import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {getResult} from "../state/result.actions";
 import {selectResult} from "../state/result.selector";
+import {AppState} from "../model/state.model";
 
 @Component({
   selector: 'app-result',
@@ -11,9 +12,10 @@ import {selectResult} from "../state/result.selector";
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
+
   result$: Observable<IResult> = this.store.select(selectResult);
 
-  constructor(private store: Store) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(getResult());
