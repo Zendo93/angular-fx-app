@@ -19,6 +19,7 @@ import {searchReducer} from "./state/search.reducer";
 import {resultReducer} from "./state/result.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {ResultEffects} from "./state/result.effects";
+import {routerReducer, StoreRouterConnectingModule} from "@ngrx/router-store";
 
 @NgModule({
   declarations: [
@@ -29,11 +30,12 @@ import {ResultEffects} from "./state/result.effects";
     ItemComponent
   ],
     imports: [
-        StoreModule.forRoot({ search: searchReducer, result: resultReducer }),
+        StoreModule.forRoot({ search: searchReducer, result: resultReducer, router: routerReducer }),
         EffectsModule.forRoot([ResultEffects]),
+        AppRoutingModule,
+        StoreRouterConnectingModule.forRoot(),
         BrowserModule,
         HttpClientModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
         MatToolbarModule,
         MatFormFieldModule,
