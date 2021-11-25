@@ -7,9 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-fx-app';
-  currentSearchTerm: string = "";
-
-  setSearchTerm(searchTerm: string) {
-    this.currentSearchTerm = searchTerm;
-  }
 }
