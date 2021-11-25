@@ -1,18 +1,17 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {IForeignExchange} from "../types";
-import {Search} from "../model/search.model";
 import {AppState} from "../model/state.model";
+import {selectSearchTerm} from "./search.selector";
 
-export const selectedSearchFeature = createFeatureSelector<Search>('search');
-export const selectedResultFeature = createFeatureSelector<AppState>('result');
+const selectedResultFeature = createFeatureSelector<AppState>('result');
 
 export const selectResult = createSelector(
-  selectedSearchFeature,
   selectedResultFeature,
-  (selectedSearchFeature: Search, selectedResultFeature: AppState) => {
+  selectSearchTerm,
+  (selectedResultFeature: AppState, term: string) => {
     let fx: IForeignExchange[] = [];
-    if(selectedResultFeature.result && selectedSearchFeature.term) {
-      fx = selectedResultFeature.result.fx.filter(fx => fx.currency.toLowerCase().startsWith(selectedSearchFeature.term.toLowerCase()));
+    if(selectedResultFeature.result && term) {
+      fx = selectedResultFeature.result.fx.filter(fx => fx.currency.toLowerCase().startsWith(term.toLowerCase()));
       return {...selectedResultFeature.result, fx: fx};
     }
     return selectedResultFeature?.result;
