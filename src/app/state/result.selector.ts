@@ -11,9 +11,14 @@ export const selectResult = createSelector(
   (selectedResultFeature: AppState, term: string) => {
     let fx: IForeignExchange[] = [];
     if(selectedResultFeature.result && term) {
-      fx = selectedResultFeature.result.fx.filter(fx => fx.currency.toLowerCase().startsWith(term.toLowerCase()));
+      fx = filterResults(selectedResultFeature.result.fx, term);
       return {...selectedResultFeature.result, fx: fx};
     }
-    return selectedResultFeature?.result;
+    return selectedResultFeature.result;
   }
 );
+
+function filterResults(results: IForeignExchange[], searchTerm: string) {
+  return results.filter(fx =>
+    fx.currency.toLowerCase().startsWith(searchTerm.toLowerCase()));
+}
