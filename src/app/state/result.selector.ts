@@ -2,6 +2,7 @@ import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {IForeignExchange} from "../types";
 import {AppState} from "../model/state.model";
 import {selectSearchTerm} from "./search.selector";
+import {filterResults} from "../utilities/filter";
 
 const selectedResultFeature = createFeatureSelector<AppState>('result');
 
@@ -17,8 +18,3 @@ export const selectResult = createSelector(
     return selectedResultFeature.result;
   }
 );
-
-function filterResults(results: IForeignExchange[], searchTerm: string) {
-  return results.filter(fx =>
-    fx.currency.toLowerCase().startsWith(searchTerm.toLowerCase()));
-}
